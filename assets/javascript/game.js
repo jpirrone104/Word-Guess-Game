@@ -5,9 +5,9 @@ var currentWord = [];
 var currentWordIndex;
 var maxGuesses = 10;
 var lettersGuessed = [];
-var remainingGuesses;
-var gameStarted = false;
-var gameOver = false;
+var remainingLives = 0;
+var gameStarted = true;
+var gameOver = true;
 var wins = 0;
 
 
@@ -15,7 +15,7 @@ var wins = 0;
 //Start game
 
 function startGame () {
-    remainingGuesses = maxGuesses;
+    remainingLives = maxGuesses;
     gameStarted = true;
 
 
@@ -43,53 +43,22 @@ updateGame();
 function updateGame() {
 
     document.getElementById("totalWins").innerText = wins;
-
+    var currentWordString = "";
     for (var i = 0; i < currentWord.length; i++) {
-        document.getElementById("currentWord").innerText += currentWord[i];
+        currentWordString += currentWord[i];
     }
-    document.getElementById("remainingGuesses").innerText = remainingGuesses;
+    
+    document.getElementById("currentWord").innerText = currentWordString;
+    document.getElementById("remainingLives").innerText = remainingLives;
     document.getElementById("lettersGuessed").innerText = lettersGuessed;
-    // if(remainingGuesses <= 0) {
+    // if(remainingLives <= 0) {
     //     document.getElementById("gameover-image").style.cssText = "display: block";
     //     document.getElementById("pressKeyTryAgain").style.cssText = "display:block";
     //     gameOver = true;
     // }
 };
 
-
-document.onkeydown = function(event) {
-    // If we finished a game, dump one keystroke and reset.
-    if(gameOver) {
-        startGame();
-        gameOver = false;
-    } else {
-        // Check to make sure a-z was pressed.
-        if(event.keyCode >= 65 && event.keyCode <= 90) {
-            Guess(event.key.toLowerCase());
-        }
-    }
-};
-
-function Guess(letter) {
-    if (remainingGuesses > 0) {
-        if (!gameStarted) {
-            gameStarted = true;
-        }
-
-        // Make sure we didn't use this letter yet
-        if (lettersGuessed.indexOf(letter) === -1) {
-            lettersGuessed.push(letter);
-            fileGuess(letter);
-        }
-    }
-    
-    updateDisplay();
-    checkWin();
-};
-
-// This function takes a letter and finds all instances of 
-// appearance in the string and replaces them in the guess word.
-function fileGuess(letter) {
+function findLetter(letter) {
     // Array to store letterPosition of letters in string
     var letterPosition = [];
 
@@ -100,14 +69,54 @@ function fileGuess(letter) {
         }
     }
 
-    // if there are no indicies, remove a guess and update the hangman image
     if (letterPosition.length <= 0) {
-        remainingGuesses--;
-        updateHangmanImage();
+        remainingLives--;
+        
     } else {
         // Loop through all the indicies and replace the '_' with a letter.
         for(var i = 0; i < letterPosition.length; i++) {
             currentWord[letterPosition[i]] = letter;
+        }
+    }
+};
+function checkWin() {
+    if(currentWord.indexOf(letter) === -1) {
+        // document.getElementById("youwin-image").style.cssText = "display: block";
+        // document.getElementById("pressKeyTryAgain").style.cssText= "display: block";
+        wins++;
+        gameOver = true;
+    }
+};
+function Guess(letter) {
+    if (remainingLives > 0) {
+
+        // Make sure we didn't use this letter yet
+        if (lettersGuessed.indexOf(letter) === -1) {
+            lettersGuessed.push(letter);
+            findLetter(letter);
+        }
+    }
+    
+    updateGame();
+
+};
+
+// This function takes a letter and finds all instances of 
+// appearance in the string and replaces them in the guess word.
+
+
+    // if there are no indicies, remove a guess and update the hangman image
+   
+document.onkeydown = function(event) {
+    // If we finished a game, dump one keystroke and reset.
+    if(gameOver) {
+        startGame();
+        gameOver = false;
+    } else {
+        // Check to make sure a-z was pressed.
+        if(event.keyCode >= 65 && event.keyCode <= 90) {
+            Guess(event.key.toLowerCase());
+            updateGame();
         }
     }
 };
