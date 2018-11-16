@@ -1,0 +1,30 @@
+body {
+    padding-top: 20px;
+    font-family: Courier New, Courier, monospace;
+    color: black;
+}
+.container { 
+    text-align: center;
+    
+}
+
+#title-image, #gameover-image, #youwin-image{ 
+    display: block;
+    margin: 0 auto;
+}
+
+#currentWord {
+    letter-spacing: 10px;
+}
+
+#pressKeyTryAgain, 
+#gameover-image, 
+#youwin-image { display: none;}
+.gameplay-column {
+    padding-top: 20px;
+    border: 3px dashed #fff;
+    text-align: center;
+    margin-top: 20px;
+    min-height: 500px;
+
+}
