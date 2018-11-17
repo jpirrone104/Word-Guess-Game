@@ -1,30 +1,32 @@
 body {
-    padding-top: 20px;
-    font-family: Courier New, Courier, monospace;
-    color: black;
-}
-.container { 
-    text-align: center;
-    
-}
 
-#title-image, #gameover-image, #youwin-image{ 
-    display: block;
-    margin: 0 auto;
+
+    font-family: Courier New, Courier, monospace;
+    font-weight: bolder;
+    color: black;
+    /* background-image: url("../images/HeaderImage.jpg");
+    background-repeat: no-repeat;
+    background-position: center; */
+
 }
+/* .container { 
+   
+    background-image: url("../images/HeaderImage.jpg");
+    background-repeat: no-repeat;
+
+    
+} */
+
 
 #currentWord {
-    letter-spacing: 10px;
+    letter-spacing: .2em;
 }
 
-#pressKeyTryAgain, 
-#gameover-image, 
-#youwin-image { display: none;}
-.gameplay-column {
-    padding-top: 20px;
-    border: 3px dashed #fff;
-    text-align: center;
-    margin-top: 20px;
-    min-height: 500px;
+
+#gameplay-column {
+    align-content: center;
+    vertical-align: center;
+    line-height: .02em;
 
 }
+
