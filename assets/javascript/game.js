@@ -9,11 +9,13 @@ var gameStarted = false;
 var gameOver = false;
 var wins = 0;
 
-
+var startSound = new Audio("./assets/soundfiles/defeat.wav");
+var loseSound = new Audio("./assets/soundfiles/zoisitelaugh.wav");
 
 //Start game
 
 function startGame () {
+    startSound.play();
     remainingLives = 10;
     gameStarted = true;
     gameOver = false;
@@ -121,11 +123,13 @@ function checkWin() {
     else if (remainingLives == 0) {
         console.log(availableWords[currentWordIndex]);
         //Put the lose image on the screen
+       
         document.getElementById("loseimage").style.cssText = "display: block";
         document.getElementById("losemessage").style.cssText = "display: block";
         document.getElementById("solution").innerHTML = availableWords[currentWordIndex] + " defeated you!";
         document.getElementById("gamecontainer").style.cssText = "display: none";
         gameOver = true;
+        loseSound.play();
     }
 
 };
