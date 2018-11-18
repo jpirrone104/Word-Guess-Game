@@ -39,6 +39,20 @@ body {
     background-repeat: no-repeat; */
     text-align: center;
     line-height: .02em;
+    position: relative;
 
 }
+
+#winimage, #loseimage {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    Height: 100%;
+    
+    
+}
+
+
+
+
 

@@ -16,6 +16,7 @@ var wins = 0;
 function startGame () {
     remainingLives = 10;
     gameStarted = true;
+    gameOver = false;
     wins = 0;
 
 
@@ -27,9 +28,8 @@ currentWordIndex = Math.floor(Math.random() * (availableWords.length));
 lettersGuessed = [];
 currentWord = [];
 
-// document.getElementById("pressKeyTryAgain").style.cssText= "display: none";
-// document.getElementById("gameover-image").style.cssText = "display: none";
-// document.getElementById("youwin-image").style.cssText = "display: none";
+document.getElementById("winimage").style.cssText = "display: none";
+document.getElementById("loseimage").style.cssText = "display: none";
 
 //Print spaces to the page (one for every letter in the word)
 for (var i=0; i < availableWords[currentWordIndex].length; i++) {
@@ -77,7 +77,9 @@ function findLetter(letter) {
         for(var i = 0; i < letterPosition.length; i++) {
             currentWord[letterPosition[i]] = letter;
             wins++;
+            console.log(wins);
         }
+
     }
 };
 
@@ -97,13 +99,14 @@ function Guess(letter) {
 };
 function checkWin() {
     if(currentWord.length === wins ) {
-        // document.getElementById("youwin-image").style.cssText = "display: block";
-        // document.getElementById("pressKeyTryAgain").style.cssText= "display: block";
+        document.getElementById("winimage").style.cssText = "display: block";
+        
         // wins = 1;
         gameOver = true;
         
     }
     else if (remainingLives == 0) {
+        document.getElementById("loseimage").style.cssText = "display: block";
         gameOver = true;
 
     }
