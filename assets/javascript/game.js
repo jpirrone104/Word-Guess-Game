@@ -76,6 +76,7 @@ function findLetter(letter) {
         // Loop through all the indicies and replace the '_' with a letter.
         for(var i = 0; i < letterPosition.length; i++) {
             currentWord[letterPosition[i]] = letter;
+            wins++;
         }
     }
 };
@@ -87,6 +88,7 @@ function Guess(letter) {
         if (lettersGuessed.indexOf(letter) === -1) {
             lettersGuessed.push(letter);
             findLetter(letter);
+            
         }
     }
     
@@ -94,10 +96,10 @@ function Guess(letter) {
 
 };
 function checkWin() {
-    if(currentWord.indexOf("_") === -1 ) {
+    if(currentWord.length === wins ) {
         // document.getElementById("youwin-image").style.cssText = "display: block";
         // document.getElementById("pressKeyTryAgain").style.cssText= "display: block";
-        wins = 1;
+        // wins = 1;
         gameOver = true;
         
     }
@@ -120,22 +122,22 @@ function checkWin() {
    
 document.onkeydown = function(event) {
     
+
+    
         // Check to make sure a-z was pressed.
-        if(event.keyCode >= 65 && event.keyCode <= 90) {
+        if(event.keyCode >= 65 && event.keyCode <= 90 && gameOver !== true) {
             Guess(event.key.toLowerCase());
             updateGame();
             checkWin();
             console.log(gameOver);
-        }
-        else if (event.keyCode >= 65 && event.keyCode <= 90) {
-            
         }
 
         if(event.keyCode == 13) {
             startGame();
             console.log(gameOver);
         }
-        
+    
+
 
 };
 
