@@ -4,23 +4,38 @@
         <title>Word-Guess_Game</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
         <script src="assets/javascript/game.js" ></script>
     </head>
     <body >
               
-                <div class="container">        
-                    <div class="row justify-content-center">
-                        <div class="col-4 align-self-center" id="gameplay-column">
-                            <h2>Press Any Key to Get Started!</h2>
-                            <h4>Wins</h4>
-                            <h5 id="totalWins"></h5>
-                            <h4>Current Word</h4>
-                            <h3 id="currentWord"></h3>
-                            <h4>Remaining Lives</h4>
-                            <h6 id="remainingLives"></h6>
-                            <h4>Incorrect Guesses</h4>
-                            <h3 id="lettersGuessed"></h3>
+                <div class="container"> 
+                    <div class="jumbotron">
+                            <a href="https://fontmeme.com/sailor-moon-crystal-font/"><img src="https://fontmeme.com/permalink/181118/7f1ebddd3d438750c68229ed05419c65.png" alt="sailor-moon-crystal-font" border="0"></a>
+                    </div>
+                    <div class="container" id="gamecontainer">
+                    <div class="row justify-content-center" >
+                        <div class="col-6 align-self-center" id="start">
+                            <h3>Press Enter to Save the Moon Kingdom!</h3> 
+                            <p>Guess the name of the villian wreaking havoc on the Moon Kingdom! If you can't guess in 10 tries, Queen Beryl wins! </p>
+                            <p>
+                            Good Luck! 
+                            </p>
                         </div>
+                    </div>       
+                    <div class="row justify-content-center">
+                        <div class="col-6 align-self-center" id="gameplay-column">
+                            <h4>Wins</h4>
+                            <h4 id="totalWins"></h5>
+                            <h4>Current Word</h4>
+                            <h4 id="currentWord"></h3>
+                            <h4>Remaining Lives</h4>
+                            <h4 id="remainingLives"></h6>
+                            <h4>Incorrect Guesses</h4>
+                            <h4 id="lettersGuessed"></h3>
+                            
+                        </div>
+                    </div>
                     </div>
                 </div> 
                

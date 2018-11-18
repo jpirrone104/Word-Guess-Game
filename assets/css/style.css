@@ -4,28 +4,40 @@ body {
     font-family: Courier New, Courier, monospace;
     font-weight: bolder;
     color: black;
-    /* background-image: url("../images/HeaderImage.jpg");
-    background-repeat: no-repeat;
-    background-position: center; */
+    font-family: 'Kalam', cursive;
+    background-color: #ffffff;
+   
 
 }
-/* .container { 
-   
-    background-image: url("../images/HeaderImage.jpg");
-    background-repeat: no-repeat;
 
-    
-} */
+.jumbotron {
+    background-color: #ffffff;
 
+}
+
+
+#start h3 {
+    text-align: center;
+}
+
+.jumbotron img{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+}
 
 #currentWord {
     letter-spacing: .2em;
 }
-
-
+#gamecontainer {
+    background-image: url("../images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 #gameplay-column {
-    align-content: center;
-    vertical-align: center;
+    /* background-image: url("../images/background.jpg");
+    background-repeat: no-repeat; */
+    text-align: center;
     line-height: .02em;
 
 }

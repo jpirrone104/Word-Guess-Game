@@ -1,12 +1,12 @@
 //array of available words 
 
-var availableWords = ["pizza", "Popcorn", "sandwich", "cookie", "taco", "burger"];
+var availableWords = ["beryl", "jadeite", "nephlyte", "zoisite", "malachite","metalia"];
 var currentWord = [];
 var currentWordIndex;
 var lettersGuessed = [];
 var remainingLives = 0;
 var gameStarted = false;
-var gameOver = true;
+var gameOver = false;
 var wins = 0;
 
 
@@ -16,6 +16,7 @@ var wins = 0;
 function startGame () {
     remainingLives = 10;
     gameStarted = true;
+    wins = 0;
 
 
 //Choose a word for the game from given array 
@@ -93,17 +94,22 @@ function Guess(letter) {
 
 };
 function checkWin() {
-    if(currentWord.indexOf("_") === -1) {
+    if(currentWord.indexOf("_") === -1 ) {
         // document.getElementById("youwin-image").style.cssText = "display: block";
         // document.getElementById("pressKeyTryAgain").style.cssText= "display: block";
-        wins++;
+        wins = 1;
         gameOver = true;
+        
     }
     else if (remainingLives == 0) {
         gameOver = true;
 
     }
+    
+    
 };
+
+
 
 
 // This function takes a letter and finds all instances of 
@@ -113,10 +119,24 @@ function checkWin() {
     // if there are no indicies, remove a guess and update the hangman image
    
 document.onkeydown = function(event) {
+    
         // Check to make sure a-z was pressed.
         if(event.keyCode >= 65 && event.keyCode <= 90) {
             Guess(event.key.toLowerCase());
             updateGame();
+            checkWin();
+            console.log(gameOver);
         }
-    
+        else if (event.keyCode >= 65 && event.keyCode <= 90) {
+            
+        }
+
+        if(event.keyCode == 13) {
+            startGame();
+            console.log(gameOver);
+        }
+        
+
 };
+
+
