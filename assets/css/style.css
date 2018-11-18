@@ -1,11 +1,13 @@
 body {
 
 
-    font-family: Courier New, Courier, monospace;
     font-weight: bolder;
     color: black;
     font-family: 'Kalam', cursive;
     background-color: #ffffff;
+    background-image: url("../images/background.png");
+    background-repeat: no-repeat;
+    background-size: cover;
    
 
 }
@@ -13,6 +15,10 @@ body {
 .jumbotron {
     background-color: #ffffff;
 
+}
+
+#full {
+    position: relative;
 }
 
 
@@ -29,27 +35,30 @@ body {
 #currentWord {
     letter-spacing: .2em;
 }
-#gamecontainer {
-    background-image: url("../images/background.png");
-    background-repeat: no-repeat;
-    background-position: center;
-}
-#gameplay-column {
+
+#gameplay-column  {
     /* background-image: url("../images/background.jpg");
     background-repeat: no-repeat; */
     text-align: center;
     line-height: .02em;
     position: relative;
+    
 
 }
 
-#winimage, #loseimage {
-    z-index: 1;
+#status {
+   
     position: absolute;
-    width: 100%;
-    Height: 100%;
+    /* height: 100%;
+    width: 100%; */
+
     
     
+}
+
+#losemessage, #winmessage {
+    text-align: center;
+    line-height: 2em;
 }
 
 

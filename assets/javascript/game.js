@@ -30,6 +30,11 @@ currentWord = [];
 
 document.getElementById("winimage").style.cssText = "display: none";
 document.getElementById("loseimage").style.cssText = "display: none";
+document.getElementById("losemessage").style.cssText = "display: none";
+document.getElementById("winmessage").style.cssText = "display: none";
+document.getElementById("gamecontainer").style.cssText = "display: block";
+
+    clearSolution();
 
 //Print blank spaces to the page
 for (var i=0; i < availableWords[currentWordIndex].length; i++) {
@@ -37,12 +42,16 @@ for (var i=0; i < availableWords[currentWordIndex].length; i++) {
 }
 
 updateGame();
+
+    function clearSolution() {
+        document.getElementById("solution").innerHTML = "";
+    }
 };
 
-//Print the gameplay to the display page
+//Display the game to the player
 function updateGame() {
 
-    // document.getElementById("totalWins").innerText = wins;
+    
     var currentWordString = "";
     for (var i = 0; i < currentWord.length; i++) {
         currentWordString += currentWord[i];
@@ -51,6 +60,7 @@ function updateGame() {
     document.getElementById("currentWord").innerText = currentWordString;
     document.getElementById("remainingLives").innerText = remainingLives;
     document.getElementById("lettersGuessed").innerText = lettersGuessed;
+   
 
 };
 
@@ -98,19 +108,23 @@ function Guess(letter) {
 };
 function checkWin() {
     //Evaluate wins counter and word length to look for a match
-    if(currentWord.length === wins ) {
+    if(availableWords[currentWordIndex].length == wins) {
         //Put the win image on the screen
         document.getElementById("winimage").style.cssText = "display: block";
+        document.getElementById("winmessage").style.cssText = "display: block";
+        document.getElementById("solution").innerHTML = "You defeated " + availableWords[currentWordIndex] + "!";
+        document.getElementById("gamecontainer").style.cssText = "display: none";
         gameOver = true;
         
     }
     //Evaluate remaining lives counter to see if a loss exists
     else if (remainingLives == 0) {
         console.log(availableWords[currentWordIndex]);
-        //alert the solution so the user sees who 'defeated' them
-        alert(availableWords[currentWordIndex] + " defeted you!");
         //Put the lose image on the screen
         document.getElementById("loseimage").style.cssText = "display: block";
+        document.getElementById("losemessage").style.cssText = "display: block";
+        document.getElementById("solution").innerHTML = availableWords[currentWordIndex] + " defeated you!";
+        document.getElementById("gamecontainer").style.cssText = "display: none";
         gameOver = true;
     }
 
