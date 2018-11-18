@@ -11,6 +11,7 @@ var wins = 0;
 
 var startSound = new Audio("./assets/soundfiles/defeat.wav");
 var loseSound = new Audio("./assets/soundfiles/zoisitelaugh.wav");
+var winSound = new Audio("./assets/soundfiles/berylgone.wav");
 
 //Start game
 
@@ -117,6 +118,7 @@ function checkWin() {
         document.getElementById("solution").innerHTML = "You defeated " + availableWords[currentWordIndex] + "!";
         document.getElementById("gamecontainer").style.cssText = "display: none";
         gameOver = true;
+        winSound.play();
         
     }
     //Evaluate remaining lives counter to see if a loss exists
