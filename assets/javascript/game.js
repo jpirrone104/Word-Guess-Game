@@ -109,7 +109,7 @@ function Guess(letter) {
     updateGame();
 
 };
-function checkWin() {
+function winOrLose() {
     //Evaluate wins counter and word length to look for a match
     if(villians[villianInPlay].length == wins) {
         //Put the win image on the screen
@@ -149,7 +149,7 @@ document.onkeydown = function(event) {
         if(event.keyCode >= 65 && event.keyCode <= 90 && gameOver !== true) {
             Guess(event.key.toLowerCase());
             updateGame();
-            checkWin();
+            winOrLose();
             console.log(gameOver);
         }
 
