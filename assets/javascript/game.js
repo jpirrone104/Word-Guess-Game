@@ -1,8 +1,8 @@
 //array of available words 
 
-var availableWords = ["beryl", "jadeite", "nephlyte", "zoisite", "malachite","metalia"];
-var currentWord = [];
-var currentWordIndex;
+var villians = ["beryl", "jadeite", "nephlyte", "zoisite", "malachite","metalia"];
+var currentVillian = [];
+var villianInPlay;
 var lettersGuessed = [];
 var remainingLives = 0;
 var gameStarted = false;
@@ -25,11 +25,11 @@ function startGame () {
 
 //Choose a word at random from the array of available words
 
-currentWordIndex = Math.floor(Math.random() * (availableWords.length));
+villianInPlay = Math.floor(Math.random() * (villians.length));
 
 //Reset Game Arrays and Images
 lettersGuessed = [];
-currentWord = [];
+currentVillian = [];
 
 document.getElementById("winimage").style.cssText = "display: none";
 document.getElementById("loseimage").style.cssText = "display: none";
@@ -40,8 +40,8 @@ document.getElementById("gamecontainer").style.cssText = "display: block";
     clearSolution();
 
 //Print blank spaces to the page
-for (var i=0; i < availableWords[currentWordIndex].length; i++) {
-    currentWord.push("_");
+for (var i=0; i < villians[villianInPlay].length; i++) {
+    currentVillian.push("_");
 }
 
 updateGame();
@@ -55,12 +55,12 @@ updateGame();
 function updateGame() {
 
     
-    var currentWordString = "";
-    for (var i = 0; i < currentWord.length; i++) {
-        currentWordString += currentWord[i];
+    var currentVillianString = "";
+    for (var i = 0; i < currentVillian.length; i++) {
+        currentVillianString += currentVillian[i];
     }
     
-    document.getElementById("currentWord").innerText = currentWordString;
+    document.getElementById("currentVillian").innerText = currentVillianString;
     document.getElementById("remainingLives").innerText = remainingLives;
     document.getElementById("lettersGuessed").innerText = lettersGuessed;
    
@@ -73,8 +73,8 @@ function findLetter(letter) {
     var letterPosition = [];
 
     // Loop through the current word and push the indices into the letterPosition array 
-    for (var i = 0; i < availableWords[currentWordIndex].length; i++) {
-        if(availableWords[currentWordIndex][i] === letter) {
+    for (var i = 0; i < villians[villianInPlay].length; i++) {
+        if(villians[villianInPlay][i] === letter) {
             letterPosition.push(i);
         }
     }
@@ -86,7 +86,7 @@ function findLetter(letter) {
     } else {
         // Loop through letters, replace the spaces with the letter if a match exists
         for(var i = 0; i < letterPosition.length; i++) {
-            currentWord[letterPosition[i]] = letter;
+            currentVillian[letterPosition[i]] = letter;
             //increment correct guesses counter
             wins++;
             console.log(wins);
@@ -111,11 +111,11 @@ function Guess(letter) {
 };
 function checkWin() {
     //Evaluate wins counter and word length to look for a match
-    if(availableWords[currentWordIndex].length == wins) {
+    if(villians[villianInPlay].length == wins) {
         //Put the win image on the screen
         document.getElementById("winimage").style.cssText = "display: block";
         document.getElementById("winmessage").style.cssText = "display: block";
-        document.getElementById("solution").innerHTML = "You defeated " + availableWords[currentWordIndex] + "!";
+        document.getElementById("solution").innerHTML = "You defeated " + villians[villianInPlay] + "!";
         document.getElementById("gamecontainer").style.cssText = "display: none";
         gameOver = true;
         winSound.play();
@@ -123,12 +123,12 @@ function checkWin() {
     }
     //Evaluate remaining lives counter to see if a loss exists
     else if (remainingLives == 0) {
-        console.log(availableWords[currentWordIndex]);
+        console.log(villians[villianInPlay]);
         //Put the lose image on the screen
        
         document.getElementById("loseimage").style.cssText = "display: block";
         document.getElementById("losemessage").style.cssText = "display: block";
-        document.getElementById("solution").innerHTML = availableWords[currentWordIndex] + " defeated you!";
+        document.getElementById("solution").innerHTML = villians[villianInPlay] + " defeated you!";
         document.getElementById("gamecontainer").style.cssText = "display: none";
         gameOver = true;
         loseSound.play();
@@ -163,5 +163,3 @@ document.onkeydown = function(event) {
 
 
 };
-
-
