@@ -5,9 +5,10 @@ var currentVillian = [];
 var villianInPlay;
 var lettersGuessed = [];
 var remainingLives = 0;
+var wins = 0;
 var gameStarted = false;
 var gameOver = false;
-var wins = 0;
+
 
 var startSound = new Audio("./assets/soundfiles/defeat.wav");
 var loseSound = new Audio("./assets/soundfiles/zoisitelaugh.wav");
@@ -23,9 +24,7 @@ function startGame () {
     wins = 0;
 
 
-//Choose a word at random from the array of available words
 
-villianInPlay = Math.floor(Math.random() * (villians.length));
 
 //Reset Game Arrays and Images
 lettersGuessed = [];
@@ -38,6 +37,9 @@ document.getElementById("winmessage").style.cssText = "display: none";
 document.getElementById("gamecontainer").style.cssText = "display: block";
 
     clearSolution();
+
+//Choose a word at random from the array of available words
+villianInPlay = Math.floor(Math.random() * (villians.length));
 
 //Print blank spaces to the page
 for (var i=0; i < villians[villianInPlay].length; i++) {
@@ -70,23 +72,23 @@ function updateGame() {
 //Find the letter in the current word
 function findLetter(letter) {
     // Array used to store the letters for the game
-    var letterPosition = [];
+    var guessedLetter = [];
 
-    // Loop through the current word and push the indices into the letterPosition array 
+    // Loop through the current word and push the indices into the guessedLetter array 
     for (var i = 0; i < villians[villianInPlay].length; i++) {
         if(villians[villianInPlay][i] === letter) {
-            letterPosition.push(i);
+            guessedLetter.push(i);
         }
     }
 
     //Decrement remaining lives if the selected letter does not find a match
-    if (letterPosition.length <= 0) {
+    if (guessedLetter.length <= 0) {
         remainingLives--;
         
     } else {
         // Loop through letters, replace the spaces with the letter if a match exists
-        for(var i = 0; i < letterPosition.length; i++) {
-            currentVillian[letterPosition[i]] = letter;
+        for(var i = 0; i < guessedLetter.length; i++) {
+            currentVillian[guessedLetter[i]] = letter;
             //increment correct guesses counter
             wins++;
             console.log(wins);
